@@ -58,8 +58,10 @@ class XAccount:
             print('[!] Unable to repost tweet. Already reposted?')
             return 1
         tweet.find_element(By.XPATH, ".//div[@data-testid='retweet']").click()
-        WebDriverWait(tweet, 5).until(EC.presence_of_element_located((By.XPATH, ".//div[@data-testid='retweet']")))
-        tweet.find_element(By.XPATH, ".//div[@data-testid='retweetConfirm']").click()
+        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.XPATH, "//div[@data-testid='retweetConfirm']")))
+        self.driver.find_element(By.XPATH, "//div[@data-testid='retweetConfirm']").click()
+        #WebDriverWait(tweet, 30).until(EC.presence_of_element_located((By.XPATH, ".//div[@data-testid='retweetConfirm']")))
+        #tweet.find_element(By.XPATH, ".//div[@data-testid='retweetConfirm']").click()
         print('[+] Post Retweeted.')
 
     def like(self, tweet):
